@@ -16,6 +16,8 @@ import okhttp3.Response;
 
 public class CoroPaulus {
 
+	private static final String CANTO_URL = "url";
+	private static final String CANTO_NOME = "nome";
 	private static final String ENDPOINT = "http://coropaulus.altervista.org/request.php";
 	
 	public List<Canto> parseCanti(String canti) {
@@ -26,7 +28,7 @@ public class CoroPaulus {
 		Iterator<JsonElement> iterator = array.iterator();
 		while(iterator.hasNext()){
 			JsonObject object = iterator.next().getAsJsonObject();
-			Canto canto = new Canto(object.get("nome").getAsString(), object.get("url").getAsString());
+			Canto canto = new Canto(object.get(CANTO_NOME).getAsString(), object.get(CANTO_URL).getAsString());
 			response.add(canto);
 		}
 		return response;
