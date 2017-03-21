@@ -17,5 +17,5 @@ maven { url 'https://jitpack.io' }
 * nel file build.gradle del progetto questa dipendenza:
 
 ```
-compile 'com.github.itjustworksteam:javacoropaulusapi:0.0.1'
+compile 'com.github.itjustworksteam:javacoropaulusapi:0.0.2'
 ```
