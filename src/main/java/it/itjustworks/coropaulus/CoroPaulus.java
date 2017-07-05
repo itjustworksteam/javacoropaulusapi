@@ -41,4 +41,9 @@ public class CoroPaulus {
 		return parseCanti(response.body().string());
 	}
 
+	public ListaCanti listaCanti() throws IOException {
+		List<Canto> canti = prendiCanti();
+		return new ListaCanti(canti);
+	}
+
 }
