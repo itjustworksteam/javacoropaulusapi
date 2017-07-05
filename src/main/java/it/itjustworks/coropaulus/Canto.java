@@ -25,4 +25,8 @@ public class Canto {
 		return response;
 	}
 
+	public String prettyToString() {
+		return this.nome + " --> https://docs.google.com/viewerng/viewer?url=" + this.url + "\n";
+	}
+
 }

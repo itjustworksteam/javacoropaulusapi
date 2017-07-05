@@ -19,4 +19,14 @@ public class CantoTest {
 		assertEquals("Canto{nome=nome, url=url}", canto.toString());
 	}
 	
+	@Test
+	public void testThree() {
+		Canto canto = new Canto("nome", "url");
+		assertEquals(cantoPrettyToStringOutput(), canto.prettyToString());
+	}
+	
+	private String cantoPrettyToStringOutput() {
+		return "nome --> https://docs.google.com/viewerng/viewer?url=url\n";
+	}
+	
 }
