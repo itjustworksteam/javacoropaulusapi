@@ -22,12 +22,42 @@ public class ListaCantiTest {
 	}
 	
 	@Test
+	public void testToString() throws FileNotFoundException {
+		CoroPaulus coro = new CoroPaulus();
+		List<Canto> canti = coro.parseCanti(getFromFile());
+		ListaCanti lista = new ListaCanti(canti);
+		lista.cerca("amare oltre");
+		assertEquals(1, lista.trovati());
+		assertEquals("Ho trovato 1 canto. Eccolo:\n\n"
+				+ "amare oltre --> https://docs.google.com/viewerng/viewer?url=http://coropaulus.altervista.org/tuttiICanti/amare_oltre.pdf\n\n", lista.prettyToString());
+	}
+	
+	@Test
+	public void testNessunCantoTrovato() throws FileNotFoundException {
+		CoroPaulus coro = new CoroPaulus();
+		List<Canto> canti = coro.parseCanti(getFromFile());
+		ListaCanti lista = new ListaCanti(canti);
+		lista.cerca("buongiorno");
+		assertEquals(0, lista.trovati());
+		assertEquals("nessun canto trovato", lista.prettyToString());
+	}
+	
+	@Test
+	public void testMoltiCanti() throws FileNotFoundException {
+		CoroPaulus coro = new CoroPaulus();
+		List<Canto> canti = coro.parseCanti(getFromFile());
+		ListaCanti lista = new ListaCanti(canti);
+		lista.cerca("alleluia");
+		assertEquals(16, lista.trovati());
+		assertNotEquals("nessun canto trovato", lista.prettyToString());
+	}
+	
 	public void test() throws IOException {
 		CoroPaulus coro = new CoroPaulus();
 		ListaCanti canti = coro.listaCanti();
 		assertEquals(196, canti.dimensione());
-		List<Canto> cantiGiusti = canti.cerca("alleluia");
-		assertEquals(17, cantiGiusti.size());
+		canti.cerca("alleluia");
+		assertEquals(17, canti.trovati());
 	}
 	
 	private String getFromFile() throws FileNotFoundException {
