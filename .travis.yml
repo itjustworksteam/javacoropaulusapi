@@ -1,8 +1,8 @@
 language: java
 jdk:
-  - oraclejdk8
+- oraclejdk8
 script:
-   - ./gradlew clean check
+- ./gradlew clean check
 after_success:
 - sh set_tags.sh
 before_cache:
@@ -13,3 +13,13 @@ cache:
   - $HOME/.gradle
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
+deploy:
+  provider: releases
+  api_key:
+    secure: jgERCr9vEKsKv0/wdS9M8Q2/qqcZzDNT3965wWZdZ+drbVfCkopKiOoa01kzYwKAJOqsNpki8K5SMVJDP9NJRHMxT05+5cqjzUZJfiUrjy2Txx1F/sB4rZIOZfpB4YXjhflSsa1haqdbXGQCIbbKi33EIbuiuHddENYj2BCeSyoW6jmM2tFL+i/rs5rr6CbFJvFCD10CTySPepF2FW6RnQ7dZoBepGr4zqT7L5r0pzTjhdOD52toOXTjA+dlPhyAvrczcArb0tAxTuIQd5wzcD9FZoibJ0/5tEFXZnyXH4vtcvgz2tekrMqaRJ0LZmoq7OI0+h2R6UcgcTiJkkSKCu9vp/Hi3o8FZv7KRJKNzuT4uaBBCd6Uex7ZlshyuNcOkqkn3qj8atk0zuXieK1IGzZt/ozwj5sXeVaIortyxmJKvjh28IkNCdfTb1r9IwxAkzXN3GS97v67A/Cr3wyAO05gvmqCNdAp5IlF52UYMjQSjCl1VEBuYFYF7y8Ds/ZuSWog4a+T2VSauTWeiVaoEKD4JHybWTNylEfslqW8TmlEVGxi7gox/ONNfPMw67WUBcYntwpoYoCofPaKhwIgfCKIZEw7d5bUSEQrR7pzNZ6o07ZXHGc/OXKXtq40kIyIfcu2dtfT6H7p1n5onjlTM4N39KdSQ3F7rMJR2gUG224=
+  file: build/libs/*coropaulus*.jar
+  file_glob: "true"
+  skip_cleanup: true
+  on:
+    branch: master
+    repo: itjustworksteam/javacoropaulusapi
